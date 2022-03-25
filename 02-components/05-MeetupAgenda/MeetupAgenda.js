@@ -8,6 +8,11 @@ export default defineComponent({
     MeetupAgendaItem,
   },
 
+  props: {
+    agenda: Array,
+
+  },
+
   template: `
     <ul class="agenda">
       <li class="agenda__item">
