@@ -9,6 +9,7 @@
 <script>
 export default {
   name: 'UiCheckbox',
+  inheritAttrs: false,
 
   props: {
     modelValue: [Boolean, Array]
