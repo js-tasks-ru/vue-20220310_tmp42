@@ -14,67 +14,60 @@
 </template>
 
 <script>
-let lastId = 0;
-
-export default {
-  name: 'MiniMessenger',
-
-  data() {
-    return {
-      newMessage: '',
-      messages: [
-        { id: lastId++, text: 'First message' },
-        { id: lastId++, text: 'Second message' },
-        { id: lastId++, text: 'Third message' },
-        { id: lastId++, text: 'Forth message' },
-      ],
-    };
-  },
-
-  methods: {
-    handleSendSubmit() {
-      this.send();
-      this.$refs.items.at(-1).scrollIntoView();
+  let lastId = 0;
+  export default {
+    name: 'MiniMessenger',
+    data() {
+      return {
+        newMessage: '',
+        messages: [
+          { id: lastId++, text: 'First message' },
+          { id: lastId++, text: 'Second message' },
+          { id: lastId++, text: 'Third message' },
+          { id: lastId++, text: 'Forth message' },
+        ],
+      };
     },
-
-    send() {
-      this.messages.push({
-        id: lastId++,
-        text: this.newMessage,
-      });
-      this.newMessage = '';
+    methods: {
+      handleSendSubmit() {
+        this.send();
+        this.$nextTick(() => this.$refs.items.at(-1).scrollIntoView());
+      },
+      send() {
+        this.messages.push({
+          id: lastId++,
+          text: this.newMessage,
+        });
+        this.newMessage = '';
+      },
     },
-  },
-};
+  };
 </script>
 
 <style scoped>
-.mini-messenger {
-  border: 4px solid var(--blue-light);
-  width: 250px;
-  background-color: var(--white);
-}
-
-.messages {
-  padding: 0 1rem;
-  margin: 0;
-  list-style: none;
-  height: 300px;
-  overflow: auto;
-}
-
-.message {
-  background-color: var(--grey);
-  margin: 1rem 0 1rem auto;
-  padding: 0.5rem;
-  width: 80%;
-  word-break: break-all;
-}
-
-.messenger__input {
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
-  border-radius: 0;
-}
+  .mini-messenger {
+    border: 4px solid var(--blue-light);
+    width: 250px;
+    background-color: var(--white);
+  }
+  .messages {
+    padding: 0 1rem;
+    margin: 0;
+    list-style: none;
+    height: 300px;
+    overflow: auto;
+  }
+  .message {
+    background-color: var(--grey);
+    margin: 1rem 0 1rem auto;
+    padding: 0.5rem;
+    width: 80%;
+    word-break: break-all;
+  }
+  .messenger__input {
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 0;
+  }
 </style>
