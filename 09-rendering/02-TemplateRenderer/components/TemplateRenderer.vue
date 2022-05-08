@@ -20,5 +20,21 @@ export default {
       default: () => [],
     },
   },
+  computed: {
+    renderFunction() {
+      return compile(this.template);
+    },
+    componentFromTemplate() {
+      return defineComponent({
+        name: 'TemplateRendererInternal',
+        components: this.components,
+        props: ['bindings'],
+        render: this.renderFunction,
+      });
+    },
+  },
+  render() {
+    return h(this.componentFromTemplate, { bindings: this.bindings });
+  },
 };
 </script>
